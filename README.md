@@ -1,12 +1,12 @@
-Here's your updated README file with **Task 4 - Modelling** and **Task 5 - Model Serving API Call** included.  
 
----
+# **Credit Scoring Model for Buy-Now-Pay-Later Service**  
 
-# Credit Scoring Model for Buy-Now-Pay-Later Service  
+This project focuses on building a **Credit Scoring Model** to assess the creditworthiness of potential borrowers for a **Buy-Now-Pay-Later (BNPL)** service. The model utilizes **transaction data** from an eCommerce platform to classify customers as **high-risk** or **low-risk**, based on their likelihood of defaulting on payments.  
 
-This project is focused on building a **Credit Scoring Model** to assess the creditworthiness of potential borrowers for a **buy-now-pay-later (BNPL)** service. The model uses transaction data provided by an eCommerce platform to classify customers as **high-risk** or **low-risk** based on their likelihood of defaulting on payments. The solution involves **exploratory data analysis (EDA)**, **feature engineering**, **model development**, and **risk prediction**.  
+The project follows a structured approach that includes **Exploratory Data Analysis (EDA), Feature Engineering, Model Development, Model Evaluation, and Deployment as an API.**  
 
-## Table of Contents  
+
+## **Table of Contents**  
 
 1. [Project Overview](#project-overview)  
 2. [Data Description](#data-description)  
@@ -14,163 +14,195 @@ This project is focused on building a **Credit Scoring Model** to assess the cre
    - [Task 1: Exploratory Data Analysis (EDA)](#task-1-exploratory-data-analysis-eda)  
    - [Task 2: Default Estimator and WoE Binning](#task-2-default-estimator-and-woe-binning)  
    - [Task 3: Feature Engineering](#task-3-feature-engineering)  
-   - [Task 4: Modelling](#task-4-modelling)  
-   - [Task 5: Model Serving API Call](#task-5-model-serving-api-call)  
+   - [Task 4: Model Development and Evaluation](#task-4-model-development-and-evaluation)  
+   - [Task 5: Model Deployment via API](#task-5-model-deployment-via-api)  
 4. [Installation Instructions](#installation-instructions)  
 5. [Usage](#usage)  
 6. [Contributing](#contributing)  
 7. [License](#license)  
 
-## Project Overview  
 
-Bati Bank is partnering with a successful eCommerce company to offer a **buy-now-pay-later (BNPL)** service. As part of the partnership, the bank needs to build a **credit scoring model** to assess the risk associated with potential borrowers. The goal is to categorize users into **high-risk** and **low-risk** groups and predict the optimal **loan amount** and **duration**.  
 
-The credit scoring model leverages **transaction data, customer profiles**, and various features to predict the **likelihood of default** and to assign **credit scores** to new customers.  
+## **Project Overview**  
 
-## Data Description  
+### **Objective**  
 
-The dataset includes:  
+Bati Bank is partnering with an eCommerce company to offer a **Buy-Now-Pay-Later (BNPL) service**. The goal is to develop a **Credit Scoring Model** that assesses customer risk levels, predicts the likelihood of **loan default**, and provides insights into **optimal loan amounts and durations**.  
 
-- **TransactionId**: Unique transaction identifier  
-- **BatchId**: Unique batch number for processing  
+### **Methodology**  
+
+The project involves the following key steps:  
+✅ Performing **Exploratory Data Analysis (EDA)** to identify trends, outliers, and missing values.  
+✅ Engineering **meaningful features** to enhance predictive performance.  
+✅ Training and evaluating **multiple machine learning models** for credit risk classification.  
+✅ **Optimizing hyperparameters** to improve model performance.  
+✅ Deploying the trained model using a **REST API** for real-time predictions.  
+
+
+## **Data Description**  
+
+The dataset consists of **customer transactions**, including details about their purchases, accounts, and historical behaviors. Key features include:  
+
+- **TransactionId**: Unique identifier for each transaction  
+- **BatchId**: Processing batch number  
 - **AccountId**: Customer’s account identifier  
-- **SubscriptionId**: Unique subscription identifier  
-- **CustomerId**: Unique customer identifier  
-- **CurrencyCode**: Country currency  
-- **CountryCode**: Geographical country code  
-- **ProviderId**: Source provider of the item bought  
-- **ProductId**: Item being bought  
-- **ProductCategory**: Category of the purchased product  
-- **ChannelId**: Customer’s usage channel (e.g., web, Android, IOS)  
+- **CustomerId**: Unique identifier for each customer  
+- **CurrencyCode**: Currency type for the transaction  
+- **CountryCode**: Country where the transaction occurred  
+- **ProviderId**: Provider of the purchased item  
+- **ProductCategory**: Category of the purchased item  
+- **ChannelId**: Customer’s usage channel (e.g., Web, Android, iOS)  
 - **Amount**: Value of the transaction  
 - **TransactionStartTime**: Timestamp of when the transaction occurred  
-- **PricingStrategy**: Category of Xente's pricing structure for merchants  
-- **FraudResult**: Indicates if the transaction is fraudulent (1 = Yes, 0 = No)  
-- **TransactionYear**: Year when the transaction occurred  
+- **FraudResult**: Binary label indicating whether the transaction was fraudulent (1 = Fraudulent, 0 = Non-Fraudulent)  
 
-## Tasks and Steps  
+The dataset is processed to handle **missing values, categorical encoding, and scaling** before feeding it into the machine learning models.  
 
-### Task 1: Exploratory Data Analysis (EDA)  
 
-1. **Overview of the Data**  
-2. **Summary Statistics**  
-3. **Distribution of Numerical Features**  
-4. **Encode Categorical Variables**  
-5. **Handle Missing Values**  
-6. **Normalize/Standardize Numerical Features**  
-7. **Feature Engineering (e.g., WoE and IV calculations)**  
+## **Tasks and Steps**  
 
-### Task 2: Default Estimator and WoE Binning  
+### **Task 1: Exploratory Data Analysis (EDA)**  
 
-1. **Construct a Default Estimator (Proxy)**
-2. **Perform Weight of Evidence (WoE) Binning**  
+📌 **Data Overview & Cleaning**:  
+- Checking dataset shape, missing values, and duplicates  
+- Handling missing values via imputation techniques  
 
-### Task 3: Feature Engineering  
+📌 **Statistical Analysis**:  
+- Summary statistics (mean, median, standard deviation)  
+- Identifying outliers using boxplots  
 
-1. **Create Aggregate Features (e.g., Total Transaction Amount, Count, Std Dev)**  
-2. **Extract Time-Based Features (e.g., Hour, Day, Month)**  
+📌 **Data Visualization**:  
+- Distribution plots for numerical variables  
+- Fraud detection analysis through correlation matrices  
+- Feature importance analysis  
 
-### Task 4: Modelling  
+📌 **Data Preprocessing**:  
+- Encoding categorical features  
+- Standardizing numerical features using Min-Max Scaling  
 
-1. **Split the Data**  
-   - Splitting the dataset into **training** and **testing** sets for model evaluation.  
 
-2. **Choose Models**  
-   - Select at least two of the following models:  
-     - **Logistic Regression**  
-     - **Decision Trees**  
-     - **Random Forest**  
-     - **Gradient Boosting Machines (GBM)**  
 
-3. **Train the Models**  
-   - Train the selected models on the **training dataset**.  
+### **Task 2: Default Estimator and WoE Binning**  
 
-4. **Hyperparameter Tuning**  
-   - Improve model performance using techniques like:  
-     - **Grid Search**  
-     - **Random Search**  
+📌 **Default Estimator (Proxy Labeling)**:  
+- Classifying users as **high-risk or low-risk** based on transaction patterns  
 
-5. **Model Evaluation**  
-   - Evaluate models using the following performance metrics:  
-     - **Accuracy**: Measures overall correctness.  
-     - **Precision**: Measures how many predicted positives were actually positive.  
-     - **Recall (Sensitivity)**: Measures how many actual positives were predicted correctly.  
-     - **F1 Score**: A balance between precision and recall.  
-     - **ROC-AUC**: Measures model ability to distinguish between classes.  
+📌 **Weight of Evidence (WoE) & Information Value (IV)**:  
+- **WoE Transformation**: Converting categorical variables into numerical representations  
+- **IV Calculation**: Identifying the most significant predictors for credit risk  
 
-### Task 5: Model Serving API Call  
 
-1. **Create a REST API**  
-   - Develop an API to serve the trained machine-learning model for real-time predictions.  
 
-2. **Choose a Framework**  
-   - Select a suitable framework for building REST APIs (e.g., **Flask, FastAPI, Django REST Framework**).  
+### **Task 3: Feature Engineering**  
 
-3. **Load the Model**  
-   - Load the trained model from **Task 4**.  
+📌 **Aggregate Features**:  
+- Total transaction amount  
+- Average transaction amount per user  
+- Number of transactions per user  
 
-4. **Define API Endpoints**  
-   - Create API endpoints that accept **input data** and return **predictions**.  
+📌 **Time-Based Features**:  
+- Hour of the day transactions occur  
+- Day of the week transactions occur  
 
-5. **Handle API Requests**  
-   - Implement logic to:  
-     - Receive input data.  
-     - Preprocess it.  
-     - Make predictions using the model.  
+📌 **Behavioral Features**:  
+- Frequency of high-value transactions  
+- Ratio of fraud to non-fraud transactions  
 
-6. **Return Predictions**  
-   - Format and return the predicted results as an API response.  
 
-7. **Deploy the API**  
-   - Deploy the API on a **web server or cloud platform** for real-time usage.  
 
----
+### **Task 4: Model Development and Evaluation**  
 
-## Installation Instructions  
+📌 **Train-Test Split**:  
+- Splitting data into **training and testing sets**  
 
-To run this project locally:  
+📌 **Model Selection**:  
+- Comparing different machine learning models:  
+  - ✅ Logistic Regression  
+  - ✅ Decision Trees  
+  - ✅ Random Forest  
+  - ✅ Gradient Boosting Machines (GBM)  
 
-1. Clone the repository:  
+📌 **Hyperparameter Tuning**:  
+- Using **Grid Search** and **Random Search** for optimization  
 
+📌 **Model Evaluation Metrics**:  
+- **Accuracy**: Measures correct classifications  
+- **Precision**: Identifies the proportion of correctly predicted positive cases  
+- **Recall (Sensitivity)**: Measures how well the model detects actual positive cases  
+- **F1 Score**: Balances precision and recall  
+- **ROC-AUC**: Assesses the model’s ability to distinguish between classes  
+
+
+
+### **Task 5: Model Deployment via API**  
+
+📌 **REST API Development**:  
+- Using **FastAPI / Flask** to create a web-based API  
+
+📌 **Model Integration**:  
+- Loading the trained model into the API backend  
+
+📌 **API Endpoints**:  
+- **POST /predict**: Accepts customer transaction details and returns a risk classification  
+
+📌 **Deployment Options**:  
+- Cloud hosting using **AWS, GCP, or Heroku**  
+
+
+
+## **Installation Instructions**  
+
+To set up the project locally, follow these steps:  
+
+1️⃣ **Clone the repository**:  
    ```bash
    git clone https://github.com/Azazh/Credit-Scoring-Model.git
    cd credit-scoring-model
-   ```
+   ```  
 
-2. Install dependencies:  
-
+2️⃣ **Install dependencies**:  
    ```bash
    pip install -r requirements.txt
-   ```
+   ```  
 
-3. Ensure required libraries are installed (e.g., **Pandas, Scikit-learn, Flask/FastAPI**).  
+3️⃣ **Run the Jupyter Notebook for EDA & Model Training**:  
+   ```bash
+   jupyter notebook
+   ```  
 
----
+4️⃣ **Start the API Server**:  
+   ```bash
+   python api.py
+   ```  
 
-## Usage  
 
-After setup, you can start working with the dataset and the models by running:  
 
+## **Usage**  
+
+📌 **Running Exploratory Data Analysis (EDA)**  
+- Open `EDA.ipynb` and execute cells for visualization and preprocessing  
+
+📌 **Training Machine Learning Models**  
+- Run `model_training.ipynb` to train and evaluate models  
+
+📌 **Deploying the Model via API**  
+- Start the API server with `python api.py`  
+- Use **Postman** or **cURL** to test the API endpoints  
+
+Example API call:  
 ```bash
-jupyter notebook
+curl -X POST "http://localhost:5000/predict" -H "Content-Type: application/json" -d '{"Amount": 1000, "ProductCategory": "Electronics"}'
 ```
 
-To start the API server (Flask example):  
 
-```bash
-python app.py
-```
 
----
+## **Contributing**  
 
-## Contributing  
+Contributions are welcome! If you find issues or want to improve the model, feel free to submit a **pull request**.  
 
-Contributions are welcome! Feel free to submit a **pull request** or open an **issue** for improvements.  
 
----
 
-## License  
+## **License**  
 
 This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.  
 
----
